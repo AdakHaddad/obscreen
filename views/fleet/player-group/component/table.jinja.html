@@ -1,0 +1,31 @@
+<div class="tiles node-player-groups">
+    <div class="tiles-inner">
+        {% for node_player_group in node_player_groups %}
+            {% set active = current_player_group and ''~node_player_group.id == ''~current_player_group.id %}
+            <a href="{{ url_for('fleet_node_player_group_list', player_group_id=node_player_group.id) }}"
+               class="{% if active %}active{% endif %} tile-item node-player-group-item-{{ node_player_group.id }} node-player-group-item"
+               data-level="{{ node_player_group.id }}"
+               data-entity="{{ node_player_group.to_json() }}">
+                <div class="tile-body">
+                    {% set title = node_player_group.name|trim %}
+                    {% set title = title if title|length > 0 %}
+                    {{ truncate((title)|default(l.common_untitled), 35, '...') }}
+                </div>
+                <div class="tile-metrics">
+                    <div class="foot-span">
+                        {% set pcounter = pcounters[node_player_group.id]|default(0) %}
+                        {% if pcounter > 0 %}
+                            <span class="players-counter">{{ pcounter }}</span> <sub><i class="fa fa-display"></i></sub>
+                        {% else %}
+                            {{ l.common_empty }}
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+
+        <div class="inner-empty empty-flag {% if node_player_groups|length != 0 %}hidden{% endif %}">
+            <i class="fa fa-list"></i>
+        </div>
+    </div>
+</div>
