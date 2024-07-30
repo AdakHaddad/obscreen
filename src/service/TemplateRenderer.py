@@ -29,15 +29,24 @@ class TemplateRenderer:
 
     def get_view_globals(self) -> dict:
         globals = dict(
-            STATIC_PREFIX="/{}/{}/".format(WebDirConstant.FOLDER_STATIC, WebDirConstant.FOLDER_STATIC_WEB_ASSETS),
+            STATIC_PREFIX="/{}/{}/".format(WebDirConstant.FOLDER_STATIC,
+                                           WebDirConstant.FOLDER_STATIC_WEB_ASSETS),
             SECRET_KEY=self._model_store.config().map().get('secret_key'),
-            FLEET_PLAYER_ENABLED=self._model_store.variable().map().get('fleet_player_enabled').as_bool(),
+            FLEET_PLAYER_ENABLED=self._model_store.variable(
+            ).map().get('fleet_player_enabled').as_bool(),
             DARK_MODE=self._model_store.variable().map().get('dark_mode').as_bool(),
             AUTH_ENABLED=self._model_store.variable().map().get('auth_enabled').as_bool(),
-            last_pillmenu_slideshow=self._model_store.variable().map().get('last_pillmenu_slideshow').as_string(),
-            last_pillmenu_configuration=self._model_store.variable().map().get('last_pillmenu_configuration').as_string(),
-            last_pillmenu_fleet=self._model_store.variable().map().get('last_pillmenu_fleet').as_string(),
-            last_pillmenu_security=self._model_store.variable().map().get('last_pillmenu_security').as_string(),
+            last_pillmenu_slideshow=self._model_store.variable(
+            ).map().get('last_pillmenu_slideshow').as_string(),
+            last_pillmenu_configuration=self._model_store.variable(
+            ).map().get('last_pillmenu_configuration').as_string(),
+            last_pillmenu_fleet=self._model_store.variable(
+            ).map().get('last_pillmenu_fleet').as_string(),
+            last_pillmenu_security=self._model_store.variable(
+            ).map().get('last_pillmenu_security').as_string(),
+            last_pillmenu_dashboard=self._model_store.variable(
+            ).map().get('last_pillmenu_dashboard').as_string(),
+
             external_url=self._model_store.variable().map().get('external_url').as_string(),
             track_created=self._model_store.user().track_user_created,
             track_updated=self._model_store.user().track_user_updated,

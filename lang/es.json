@@ -7,6 +7,8 @@
   "dynmenu_security": "Seguridad",
   "slideshow_slide_page_title": "Descripción General del Programa",
   "slideshow_slide_goto_player": "Ir al reproductor",
+  "dashboard_page_title": "Dashboard",
+
   "slideshow_slide_refresh_player": "Actualizar reproductor",
   "slideshow_slide_refresh_player_success": "La señal de actualización de los jugadores ha sido enviada, debería llegar pronto (%time% segundos máximo)",
   "slideshow_slide_button_add": "Agregar una diapositiva",

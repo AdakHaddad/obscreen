@@ -85,6 +85,8 @@
   "playlist_panel_content_management_notifications": "Playlist notifications",
   "playlist_panel_content_management_notifications_desc": "Notifications are slides that appear on top of everything at a time and for a duration you choose. The order in which they appear below is irrelevant.",
   "slideshow_slide_button_add_notification": "Add Notification",
+  "dashboard_page_title": "Dashboard",
+
   "playlist_panel_preview": "Playlist preview",
   "playlist_panel_preview_action": "Preview",
   "playlist_panel_inactive": "Inactive playlists",
