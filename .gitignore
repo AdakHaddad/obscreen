@@ -19,7 +19,11 @@ var/run/*
 .env
 venv/
 node_modules
+<<<<<<< HEAD
 tmp.py
 !/plugins/user/Dashboard
 data/www/plugins/*
 !data/www/plugins/.gitkeep
+=======
+tmp.py
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24

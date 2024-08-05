@@ -38,6 +38,9 @@ class HookType(Enum):
     H_ROOT_JAVASCRIPT = 'h_root_javascript'
     H_ROOT_NAV_ELEMENT_START = 'h_root_nav_element_start'
     H_ROOT_NAV_ELEMENT_END = 'h_root_nav_element_end'
+<<<<<<< HEAD
     H_ROOT_PILL_ELEMENT_START = 'h_root_pill_element_start'
     H_ROOT_PILL_ELEMENT_END = 'h_root_pill_element_end'
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
     H_ROOT_FOOTER = 'h_root_footer'

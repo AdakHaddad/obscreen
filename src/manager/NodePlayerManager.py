@@ -24,6 +24,7 @@ class NodePlayerManager(ModelManager):
         "updated_at INTEGER"
     ]
 
+<<<<<<< HEAD
     def __init__(self, lang_manager: LangManager, database_manager: DatabaseManager, user_manager: UserManager, variable_manager: VariableManager, get_signages):
         super().__init__(lang_manager, database_manager, user_manager, variable_manager)
         self._db = database_manager.open(self.TABLE_NAME, self.TABLE_MODEL)
@@ -31,17 +32,29 @@ class NodePlayerManager(ModelManager):
 
     def get_signages(self):
         return self._get_signages()
+=======
+    def __init__(self, lang_manager: LangManager, database_manager: DatabaseManager, user_manager: UserManager, variable_manager: VariableManager):
+        super().__init__(lang_manager, database_manager, user_manager, variable_manager)
+        self._db = database_manager.open(self.TABLE_NAME, self.TABLE_MODEL)
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 
     def hydrate_object(self, raw_node_player: dict, id: Optional[int] = None) -> NodePlayer:
         if id:
             raw_node_player['id'] = id
 
+<<<<<<< HEAD
         [raw_node_player, user_tracker_edits] = self.user_manager.initialize_user_trackers(
             raw_node_player)
 
         if len(user_tracker_edits) > 0:
             self._db.update_by_id(
                 self.TABLE_NAME, raw_node_player['id'], user_tracker_edits)
+=======
+        [raw_node_player, user_tracker_edits] = self.user_manager.initialize_user_trackers(raw_node_player)
+
+        if len(user_tracker_edits) > 0:
+            self._db.update_by_id(self.TABLE_NAME, raw_node_player['id'], user_tracker_edits)
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 
         return NodePlayer(**raw_node_player)
 
@@ -81,10 +94,15 @@ class NodePlayerManager(ModelManager):
         return index
 
     def forget_for_user(self, user_id: int):
+<<<<<<< HEAD
         node_players = self.get_by(
             "created_by = '{}' or updated_by = '{}'".format(user_id, user_id))
         edits_node_players = self.user_manager.forget_user_for_entity(
             node_players, user_id)
+=======
+        node_players = self.get_by("created_by = '{}' or updated_by = '{}'".format(user_id, user_id))
+        edits_node_players = self.user_manager.forget_user_for_entity(node_players, user_id)
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 
         for node_player_id, edits in edits_node_players.items():
             self._db.update_by_id(self.TABLE_NAME, node_player_id, edits)
@@ -96,8 +114,12 @@ class NodePlayerManager(ModelManager):
             query = "{} {}".format(query, "AND group_id = {}".format(group_id))
 
         if folder_id:
+<<<<<<< HEAD
             query = "{} {}".format(
                 query, "AND folder_id = {}".format(folder_id))
+=======
+            query = "{} {}".format(query, "AND folder_id = {}".format(folder_id))
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 
         return self.get_by(query=query, sort=sort, ascending=ascending)
 

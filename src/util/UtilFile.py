@@ -1,7 +1,10 @@
 import os
 import uuid
 import math
+<<<<<<< HEAD
 import shutil
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 
 
 def randomize_filename(old_filename: str) -> str:
@@ -18,6 +21,7 @@ def convert_size(size_bytes):
     p = math.pow(1024, i)
     s = round(size_bytes / p, 2)
     return f"{s} {size_name[i]}"
+<<<<<<< HEAD
 
 
 def copy_files(src, dst):
@@ -35,3 +39,5 @@ def copy_files(src, dst):
             src_file = os.path.join(root, file)
             dst_file = os.path.join(dst_path, file)
             shutil.copy2(src_file, dst_file)
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24

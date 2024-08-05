@@ -1,9 +1,14 @@
 import os
 import json
 
+<<<<<<< HEAD
 from flask import Flask, send_from_directory, Markup, url_for, request
 from flask_login import current_user
 from typing import List, Optional
+=======
+from flask import Flask, send_from_directory, Markup, url_for
+from typing import List
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from src.service.ModelStore import ModelStore
 from src.model.enum.HookType import HookType
@@ -11,7 +16,10 @@ from src.model.hook.HookRegistration import HookRegistration
 from src.model.hook.StaticHookRegistration import StaticHookRegistration
 from src.model.hook.FunctionalHookRegistration import FunctionalHookRegistration
 from src.constant.WebDirConstant import WebDirConstant
+<<<<<<< HEAD
 from src.service.AliasFileSystemLoader import AliasFileSystemLoader
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 from src.util.utils import get_safe_cron_descriptor, \
     is_cron_in_datetime_moment, \
     is_cron_in_week_moment, \
@@ -25,13 +33,17 @@ class TemplateRenderer:
         self._kernel = kernel
         self._model_store = model_store
         self._render_hook = render_hook
+<<<<<<< HEAD
         self._rendering_env = self.init_rendering_env()
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 
     def cron_descriptor(self, expression: str, use_24hour_time_format=True) -> str:
         return get_safe_cron_descriptor(expression, use_24hour_time_format, self._model_store.lang().get_lang(local_with_country=True))
 
     def get_view_globals(self) -> dict:
         globals = dict(
+<<<<<<< HEAD
             STATIC_PREFIX="/{}/{}/".format(WebDirConstant.FOLDER_STATIC, WebDirConstant.FOLDER_STATIC_WEB_ASSETS),
             SECRET_KEY=self._model_store.config().map().get('secret_key'),
             FLEET_PLAYER_ENABLED=self._model_store.variable().map().get('fleet_player_enabled').as_bool(),
@@ -41,6 +53,26 @@ class TemplateRenderer:
             last_pillmenu_configuration=self._model_store.variable().map().get('last_pillmenu_configuration').as_string(),
             last_pillmenu_fleet=self._model_store.variable().map().get('last_pillmenu_fleet').as_string(),
             last_pillmenu_security=self._model_store.variable().map().get('last_pillmenu_security').as_string(),
+=======
+            STATIC_PREFIX="/{}/{}/".format(WebDirConstant.FOLDER_STATIC,
+                                           WebDirConstant.FOLDER_STATIC_WEB_ASSETS),
+            SECRET_KEY=self._model_store.config().map().get('secret_key'),
+            FLEET_PLAYER_ENABLED=self._model_store.variable(
+            ).map().get('fleet_player_enabled').as_bool(),
+            DARK_MODE=self._model_store.variable().map().get('dark_mode').as_bool(),
+            AUTH_ENABLED=self._model_store.variable().map().get('auth_enabled').as_bool(),
+            last_pillmenu_slideshow=self._model_store.variable(
+            ).map().get('last_pillmenu_slideshow').as_string(),
+            last_pillmenu_configuration=self._model_store.variable(
+            ).map().get('last_pillmenu_configuration').as_string(),
+            last_pillmenu_fleet=self._model_store.variable(
+            ).map().get('last_pillmenu_fleet').as_string(),
+            last_pillmenu_security=self._model_store.variable(
+            ).map().get('last_pillmenu_security').as_string(),
+            last_pillmenu_dashboard=self._model_store.variable(
+            ).map().get('last_pillmenu_dashboard').as_string(),
+
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
             external_url=self._model_store.variable().map().get('external_url').as_string(),
             track_created=self._model_store.user().track_user_created,
             track_updated=self._model_store.user().track_user_updated,
@@ -83,6 +115,7 @@ class TemplateRenderer:
                 content.append(hook_registration.function())
 
         return Markup("".join(content))
+<<<<<<< HEAD
 
     def init_rendering_env(self, base_folder: Optional[str] = None) -> Environment:
         base_folder = "{}/".format(base_folder.replace(self._kernel.get_application_dir(), '')) if base_folder else ''
@@ -124,3 +157,5 @@ class TemplateRenderer:
             **parameters,
             **self.get_view_globals(),
         )
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24

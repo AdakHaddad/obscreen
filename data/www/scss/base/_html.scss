@@ -115,6 +115,7 @@ main {
 					flex-direction: column;
 					justify-content: flex-start;
 					align-items: flex-start;
+<<<<<<< HEAD
 					padding: 10px 10px 40px 10px;
 					background: $layoutBackground;
 					align-self: stretch;
@@ -133,6 +134,11 @@ main {
 						align-items: center;
 						color: $gscale6;
 					}
+=======
+					padding: 0 10px 40px 10px;
+					background: $layoutBackground;
+					align-self: stretch;
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 				}
 			}
 

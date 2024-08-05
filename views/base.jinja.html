@@ -70,6 +70,17 @@
         {"name": l.dynmenu_content_library, "route": "slideshow_content_list", "icon": "fa-image"},
         {"name": l.dynmenu_content_playlists, "route": "playlist", "route_alt": "playlist_list", "icon": "fa-play"},
         ]
+<<<<<<< HEAD
+=======
+        },"dashboard": {
+        "name": l.dynmenu_dashboard,
+        "icon": "fa-chart-line",
+        "position": 4,
+        "main_pill_route": last_pillmenu_dashboard,
+        "pills": [
+        {"name": l.dashboard_page_title, "route": "dashboard_index", "icon": "fa-chart-line"}
+        ]
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
         },
         "configuration": {
         "name": l.dynmenu_configuration,
@@ -132,7 +143,11 @@
                 <a href="{{ url_for('playlist') }}">
                     <img src="{{ STATIC_PREFIX }}img/logo.png" class="before" />
                     <img src="{{ STATIC_PREFIX }}img/logo-white.png" class="after" />
+<<<<<<< HEAD
                     SIGNAGE
+=======
+                    Obscreen
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
                 </a>
             </h1>
 
@@ -173,6 +188,7 @@
 
             {% if authenticated_view %}
             <div class="context-bar {{ 'hidden' if not show_context_bar }}">
+<<<<<<< HEAD
 
                 {% block pill_menu %}
                 {% if current_dynmenu %}
@@ -181,6 +197,27 @@
                 {% endwith %}
                 {% endif %}
                 {% endblock %}
+=======
+                {% if current_dynmenu %}
+                <div class="context-menu">
+                    <div class="inner">
+                        <ul class="pills">
+                            {% for menu in current_dynmenu.pills %}
+                            <li class="{{ 'active' if active_route == menu.route or active_route == menu.route_alt }}">
+                                {% set href = menu.url_for if menu.url_for else url_for(menu.route) %}
+                                <a href="{{ href }}">
+                                    <span class="icon">
+                                        <i class="fa {{ menu.icon }}"></i>
+                                    </span>
+                                    {{ menu.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 
 
                 <div class="context-divider"></div>

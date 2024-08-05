@@ -1,5 +1,8 @@
 import os
+<<<<<<< HEAD
 import shutil
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 import logging
 import inspect
 import importlib
@@ -15,7 +18,10 @@ from src.model.enum.VariableType import VariableType
 from src.model.enum.HookType import HookType
 from src.model.hook.HookRegistration import HookRegistration
 from src.model.hook.StaticHookRegistration import StaticHookRegistration
+<<<<<<< HEAD
 from src.util.UtilFile import copy_files
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 from typing import List, Dict
 
 
@@ -166,12 +172,15 @@ class PluginStore:
         # WEB CONTROLLERS
         self.load_controllers(plugin)
 
+<<<<<<< HEAD
         # STATIC FILES
         static_src = plugin.get_plugin_static_src_dir()
         static_dst = self._web_server.get_plugin_static_dst_dir(plugin.use_id())
         if os.path.exists(static_src):
             copy_files(static_src, static_dst)
 
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
     def clean_dead_variables(self) -> None:
         for variable_name, variable in self._dead_variables_candidates.items():
             logging.debug("Removing dead plugin variable {}".format(variable_name))

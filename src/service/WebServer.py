@@ -53,6 +53,7 @@ class WebServer:
     def get_app(self):
         return self._app
 
+<<<<<<< HEAD
     def get_template_dir(self) -> str:
         return "{}/{}".format(self._kernel.get_application_dir(), WebDirConstant.FOLDER_TEMPLATES)
 
@@ -70,6 +71,22 @@ class WebServer:
             __name__,
             template_folder=self.get_template_dir(),
             static_folder=self.get_static_dir(),
+=======
+    def get_template_folder(self) -> str:
+        return "{}/{}".format(self._kernel.get_application_dir(), WebDirConstant.FOLDER_TEMPLATES)
+
+    def get_static_folder(self) -> str:
+        return "{}/{}".format(self._kernel.get_application_dir(), WebDirConstant.FOLDER_STATIC)
+
+    def get_web_folder(self) -> str:
+        return "{}/{}/{}".format(self._kernel.get_application_dir(), WebDirConstant.FOLDER_STATIC, WebDirConstant.FOLDER_STATIC_WEB_ASSETS)
+
+    def _setup_flask_app(self) -> None:
+        self._app = Flask(
+            __name__,
+            template_folder=self.get_template_folder(),
+            static_folder=self.get_static_folder(),
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
         )
 
         self._app.config['UPLOAD_FOLDER'] = "{}/{}".format(WebDirConstant.FOLDER_STATIC, WebDirConstant.FOLDER_STATIC_WEB_UPLOADS)
@@ -121,5 +138,9 @@ class WebServer:
     def _setup_web_errors(self) -> None:
         @self._app.errorhandler(404)
         def not_found(e):
+<<<<<<< HEAD
             return send_from_directory(self.get_template_dir(), 'core/error404.html'), 404
+=======
+            return send_from_directory(self.get_template_folder(), 'core/error404.html'), 404
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 

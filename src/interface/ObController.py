@@ -28,11 +28,19 @@ class ObController(abc.ABC):
 
         return self._plugin
 
+<<<<<<< HEAD
     def get_template_dir(self):
         return self._web_server.get_template_dir()
 
     def get_web_dir(self):
         return self._web_server.get_web_dir()
+=======
+    def get_template_folder(self):
+        return self._web_server.get_template_folder()
+
+    def get_web_folder(self):
+        return self._web_server.get_web_folder()
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
 
     def reload_web_server(self):
         self._web_server.reload()
@@ -45,6 +53,9 @@ class ObController(abc.ABC):
 
     def get_external_storage_server(self):
         return self._kernel.external_storage_server
+<<<<<<< HEAD
 
     def render_view(self, template_file: str, **parameters: dict) -> str:
         return self._template_renderer.render_view(template_file, self.plugin(), **parameters)
+=======
+>>>>>>> bd6c1b822b23f8ff3dfff57f0466b3d3c27dab24
