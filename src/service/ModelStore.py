@@ -24,25 +24,46 @@ class ModelStore:
         self._config_manager = ConfigManager(replacers={
             'application_dir': kernel.get_application_dir()
         })
-        self._logging_manager = LoggingManager(config_manager=self._config_manager)
+        self._logging_manager = LoggingManager(
+            config_manager=self._config_manager)
 
         # Pure
         self._lang_manager = LangManager()
         self._database_manager = DatabaseManager()
 
         # Dynamics
-        self._user_manager = UserManager(lang_manager=self._lang_manager, database_manager=self._database_manager, on_user_delete=self.on_user_delete)
-        self._variable_manager = VariableManager(lang_manager=self._lang_manager, database_manager=self._database_manager, user_manager=self._user_manager, config_manager=self._config_manager)
-        self._lang_manager.set_lang(self.variable().map().get('lang').as_string())
+        self._user_manager = UserManager(
+            lang_manager=self._lang_manager, database_manager=self._database_manager, on_user_delete=self.on_user_delete)
+        self._variable_manager = VariableManager(lang_manager=self._lang_manager, database_manager=self._database_manager,
+                                                 user_manager=self._user_manager, config_manager=self._config_manager)
+        self._lang_manager.set_lang(
+            self.variable().map().get('lang').as_string())
 
         # Model
-        self._folder_manager = FolderManager(lang_manager=self._lang_manager, database_manager=self._database_manager, user_manager=self._user_manager, variable_manager=self._variable_manager)
-        self._node_player_manager = NodePlayerManager(lang_manager=self._lang_manager, database_manager=self._database_manager, user_manager=self._user_manager, variable_manager=self._variable_manager)
-        self._node_player_group_manager = NodePlayerGroupManager(lang_manager=self._lang_manager, database_manager=self._database_manager, user_manager=self._user_manager, variable_manager=self._variable_manager)
-        self._playlist_manager = PlaylistManager(lang_manager=self._lang_manager, database_manager=self._database_manager, user_manager=self._user_manager, variable_manager=self._variable_manager)
-        self._slide_manager = SlideManager(lang_manager=self._lang_manager, database_manager=self._database_manager, user_manager=self._user_manager, variable_manager=self._variable_manager)
-        self._content_manager = ContentManager(lang_manager=self._lang_manager, database_manager=self._database_manager, user_manager=self._user_manager, variable_manager=self._variable_manager, config_manager=self._config_manager)
+        self._folder_manager = FolderManager(lang_manager=self._lang_manager, database_manager=self._database_manager,
+                                             user_manager=self._user_manager, variable_manager=self._variable_manager)
+        self._node_player_manager = NodePlayerManager(lang_manager=self._lang_manager, database_manager=self._database_manager,
+                                                      user_manager=self._user_manager, variable_manager=self._variable_manager, get_signages=self.get_signages)
+        self._node_player_group_manager = NodePlayerGroupManager(
+            lang_manager=self._lang_manager, database_manager=self._database_manager, user_manager=self._user_manager, variable_manager=self._variable_manager)
+        self._playlist_manager = PlaylistManager(lang_manager=self._lang_manager, database_manager=self._database_manager,
+                                                 user_manager=self._user_manager, variable_manager=self._variable_manager)
+        self._slide_manager = SlideManager(lang_manager=self._lang_manager, database_manager=self._database_manager,
+                                           user_manager=self._user_manager, variable_manager=self._variable_manager)
+        self._content_manager = ContentManager(lang_manager=self._lang_manager, database_manager=self._database_manager,
+                                               user_manager=self._user_manager, variable_manager=self._variable_manager, config_manager=self._config_manager)
         self._variable_manager.reload()
+
+    def get_signages(self):
+        # Add logic to fetch signage data
+        # For example, fetching from a database or any other data source
+        # Returning a mock data for illustration
+        return [
+            {"name": "Signage 1", "lokasi": "Lantai 1",
+             "jumlah_orang": 10, "waktu": "10:00 AM"},
+            {"name": "Signage 2", "lokasi": "Lantai 2",
+             "jumlah_orang": 20, "waktu": "11:00 AM"}
+        ]
 
     def logging(self) -> LoggingManager:
         return self._logging_manager

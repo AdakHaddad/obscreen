@@ -34,5 +34,3 @@ class ModelManager:
     @property
     def variable_manager(self) -> VariableManager:
         return self._variable_manager
-
-

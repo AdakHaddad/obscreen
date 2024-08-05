@@ -1,10 +1,8 @@
 from src.interface.ObPlugin import ObPlugin
-
-from typing import List, Dict
+from typing import List
 from src.model.entity.Variable import Variable
 from src.model.enum.HookType import HookType
 from src.model.hook.HookRegistration import HookRegistration
-
 
 class Dashboard(ObPlugin):
 

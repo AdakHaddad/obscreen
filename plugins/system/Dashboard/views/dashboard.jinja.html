@@ -1,52 +1,62 @@
 {% extends '::base.jinja.html' %}
 
 {% block page_title %}
-    {{ l.dashboard_menu_title }}
+{{ l.dashboard_menu_title }}
 {% endblock %}
 
 {% block add_css %}
-        <link rel="stylesheet" href="{{ STATIC_PLUGIN_PREFIX }}css/dashboard.css"/>
-{% endblock %}
-
-{% block add_js %}
-
+<link rel="stylesheet" href="{{ STATIC_PLUGIN_PREFIX }}css/dashboard.css" />
 {% endblock %}
 
 {% block body_class %}view-dashboard{% endblock %}
 
 {% block pill_menu %}
-    {% with pills=[
-        {"name": l.dashboard_menu_title, "route": "dashboard", "icon": "fa-dashboard"},
-    ] %}
-        {% include '::core/pill-menu.jinja.html' %}
-    {% endwith %}
+{% with pills=[
+{"name": l.dashboard_menu_title, "route": "dashboard", "icon": "fa-dashboard"},
+] %}
+{% include '::core/pill-menu.jinja.html' %}
+{% endwith %}
 {% endblock %}
 
 {% block page %}
-
-    <div class="top-content">
-        <div class="top-actions">
-
-            <button type="button" class="btn btn-neutral">
-                <i class="fa fa-hand"></i>
-            </button>
-        </div>
+<div class="top-content">
+    <div class="top-actions">
+        <button type="button" class="btn btn-neutral">
+            <i class="fa fa-hand"></i>
+        </button>
     </div>
+</div>
 
-    <div class="bottom-content">
-
-        <div class="page-content">
-            <div class="inner">
-                <div class="vertical">
-                    <h3>
-                        {{ l.dashboard_menu_title }}
-                    </h3>
-
-                    <p>Hello world ! You have {{ count_players }} player(s)</p>
-                </div>
+<div class="bottom-content">
+    <div class="page-content">
+        <div class="inner">
+            <div class="vertical">
+                <h3>
+                    {{ l.dashboard_menu_title }}
+                </h3>
+                <p>{{ count_players }} Active player(s)</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Playlist (No_Lantai_CCTV)</th>
+                            <th>Tipe</th>
+                            <th>Waktu</th>
+                            <th>Engagement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for signage in signages %}
+                        <tr>
+                            <td>{{ signage.name }}</td>
+                            <td>{{ signage.lokasi }}</td>
+                            <td>{{ signage.waktu }}</td>
+                            <td>{{ signage.jumlah_orang }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-
-
+</div>
 {% endblock %}
