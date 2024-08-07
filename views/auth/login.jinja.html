@@ -1,0 +1,51 @@
+{% extends 'base.jinja.html' %}
+
+{% block page_title %}
+    {{ l.login_page_title }}
+{% endblock %}
+
+{% block add_css %}
+    {{ HOOK(H_LOGIN_CSS) }}
+{% endblock %}
+
+{% block add_js %}
+    {{ HOOK(H_LOGIN_JAVASCRIPT) }}
+{% endblock %}
+
+{% block body_class %}view-login{% endblock %}
+
+{% block page %}
+
+    {% if login_error %}
+        <div class="alert alert-error">
+            {{ t('login_error_' ~ login_error) }}
+        </div>
+    {% endif %}
+
+    <div class="login-content">
+        <div class="form-holder">
+            <div class="card">
+                <form class="form" action="{{ url_for('login') }}" method="post">
+                    <div class="form-group">
+                        <label for="password">{{ l.login_form_username }}</label>
+                        <div class="widget">
+                            <input type="text" name="username" required="required" value="{{ last_username|d(request.args.get('username', ''), True) }}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">{{ l.login_form_password }}</label>
+                        <div class="widget">
+                            <input type="password" name="password" required="required" value="{{ request.args.get('password', '') }}" />
+                        </div>
+                    </div>
+                    <div class="actions actions-center">
+                        <button type="submit" class="btn btn-pixel">
+                            <i class="fa fa-play"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

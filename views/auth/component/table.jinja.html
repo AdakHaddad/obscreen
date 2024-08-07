@@ -1,0 +1,24 @@
+<div class="tiles users">
+    <div class="tiles-inner">
+    {% for user in users %}
+        <div class="user-item tile-item {% if not user.enabled %}disabled{% endif %}" data-level="{{ user.id }}"
+            data-entity="{{ user.to_json({"created_by": track_created(user).username, "updated_by": track_updated(user).username}) }}">
+            <div class="tile-body">
+                {{ truncate(user.username, 100, '...') }}
+            </div>
+            <div class="tile-tail">
+                <a href="javascript:void(0);" class="item-edit user-edit btn btn-info">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <a href="{{ url_for('auth_user_delete', user_id=user.id) }}" class="item-delete user-delete btn btn-naked protected">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <div class="inner-empty empty-flag ">
+            <i class="fa fa-user"></i>
+        </div>
+    {% endfor %}
+    </div>
+</div>

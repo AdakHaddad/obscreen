@@ -1,0 +1,54 @@
+{% extends 'base.jinja.html' %}
+
+{% block page_title %}
+    {{ l.auth_page_title }}
+{% endblock %}
+
+{% block add_css %}
+    {{ HOOK(H_AUTH_CSS) }}
+{% endblock %}
+
+{% block add_js %}
+    <script src="{{ STATIC_PREFIX }}js/auth/users.js"></script>
+    {{ HOOK(H_AUTH_JAVASCRIPT) }}
+{% endblock %}
+
+{% block body_class %}view-auth-user-list{% endblock %}
+
+{% block page %}
+
+    <div class="top-content">
+        <div class="top-actions">
+            {{ HOOK(H_AUTH_TOOLBAR_ACTIONS_START) }}
+            <button type="button" class="btn btn-info item-add user-add">
+                <i class="fa fa-user-plus icon-left"></i>{{ l.auth_user_button_add }}
+            </button>
+            {{ HOOK(H_AUTH_TOOLBAR_ACTIONS_END) }}
+        </div>
+    </div>
+
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ l[error] }}
+        </div>
+    {% endif %}
+
+    <div class="bottom-content">
+        <div class="page-content">
+            <div class="inner">
+                {% with users=users %}
+                    {% include 'auth/component/table.jinja.html' %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+
+    <div class="modals hidden">
+        <div class="modals-outer">
+            <div class="modals-inner">
+                {% include 'auth/modal/add.jinja.html' %}
+                {% include 'auth/modal/edit.jinja.html' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
